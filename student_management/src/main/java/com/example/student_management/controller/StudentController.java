@@ -54,6 +54,7 @@ public class StudentController {
 		return stuserv.getBydept(dept);
 	}
 	
+	@GetMapping("/getByCity")
 	public List<Student> getByCity(@RequestParam String city){
 		return stuserv.getByCity(city);
 	}
