@@ -42,19 +42,19 @@ GET `/api/student/getall`
 
 ### Get Student by Name
 
-GET `/api/student/getByName?StuName=name`
+GET `/api/student/getByName?stuName=name`
 
 ### Get Student by Contact
 
-GET `/api/student/getByContact?MobNumber=number`
+GET `/api/student/getByContact?mobNumber=number`
 
 ### Get Student by Department
 
-GET `/api/student/getByDept?Dept=dept`
+GET `/api/student/getByDept?dept=dept`
 
 ### Get Student by City
 
-GET `/api/student/getByCity?City=city`
+GET `/api/student/getByCity?city=city`
 
 ### Update Student
 
