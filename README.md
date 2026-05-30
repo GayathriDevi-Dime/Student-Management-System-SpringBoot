@@ -21,6 +21,7 @@ The project performs CRUD operations (Create, Read, Update, Delete) for student 
 ✅ Get All Students
 ✅ Search Student by Name
 ✅ Search Student by Contact Number
+✅ Search Student by City
 ✅ Search Student by Department
 ✅ Update Student Details
 ✅ Delete Student
@@ -50,6 +51,10 @@ GET `/api/student/getByContact?mobNumber=number`
 ### Get Student by Department
 
 GET `/api/student/getByDept?dept=dept`
+
+### Get Student by City
+
+GET `/api/student/getByCity?city=dept`
 
 ### Update Student
 
