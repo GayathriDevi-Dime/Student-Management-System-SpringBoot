@@ -29,7 +29,7 @@ public class StudentController {
 		return stuserv.create(s);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/getById/{id}")
 	public Student getById(@PathVariable Long id) {
 		return stuserv.getStuById(id);
 	}
