@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.student_management.DTO.StudentDTO;
+import com.example.student_management.DTO.StudentRequestDTO;
+import com.example.student_management.DTO.StudentResponseDTO;
 import com.example.student_management.entity.Student;
 import com.example.student_management.exception.CityNotFound;
 import com.example.student_management.exception.ContactNotFound;
@@ -17,6 +20,24 @@ public class StudentService {
 
 	@Autowired
 	public StudentRepo sturepo;
+	
+    public StudentResponseDTO SaveStudent(StudentRequestDTO dto) {
+    	Student student=new Student();  //entity object for the conversion
+    	
+    	student.setStuName(dto.getStuName());
+    	student.setMobNumber(dto.getMobNumber());
+    	student.setCity(dto.getCity());
+    	student.setDept(dto.getDept());
+    	
+    	Student savedstudent=sturepo.save(student);  // saved this entity object in repo, becoz repo only understands the entity object
+    	
+    	StudentResponseDTO responseDTO=new StudentResponseDTO();
+    	responseDTO.setId(savedstudent.getId());  
+    	responseDTO.setStuName(savedstudent.getStuName());
+    	responseDTO.setDept(savedstudent.getDept());
+    	responseDTO.setCity(savedstudent.getCity());
+    	return responseDTO;
+    }
 
 	// student creation
 	public Student create(Student s) {
@@ -62,14 +83,13 @@ public class StudentService {
 
 	// Deletion of data
 	public String deleteById(Long id) {
-		Student s = sturepo.findById(id).orElse(null);
-		if (s != null) {
-			sturepo.delete(s);
-			return "data is deleted";
+	Student s = sturepo.findById(id).orElseThrow(()->new StudentNotFoundException("Student not found"));  // find that student is repo
+	 sturepo.delete(s);  //delete that particular student from that repo
+	return "student deleted Successfully";
+			
 		}
-		return "can't find the data";
 
-	}
+
 
 	// Updation of Data
 	public String update(Long id, Student newstu) {

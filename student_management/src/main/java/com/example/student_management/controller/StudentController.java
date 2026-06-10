@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.student_management.DTO.StudentRequestDTO;
+import com.example.student_management.DTO.StudentResponseDTO;
 import com.example.student_management.entity.Student;
 import com.example.student_management.service.StudentService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -25,8 +29,8 @@ public class StudentController {
 	private StudentService stuserv;
 
 	@PostMapping("/save")
-	public Student createStudent(@RequestBody Student s) {
-		return stuserv.create(s);
+	public StudentResponseDTO studentResponse( @Valid @RequestBody StudentRequestDTO s) {
+		return stuserv.SaveStudent(s);
 	}
 
 	@GetMapping("/getById/{id}")
@@ -40,32 +44,32 @@ public class StudentController {
 	}
 	
 	@GetMapping("/getByName")
-	public List<Student> getByName(@RequestParam String stuName) {
+	public List<Student> getByName( @RequestParam String stuName) {
 		return stuserv.getByName(stuName);
 	}
 	
 	@GetMapping("/getByContact")
-	public Student getByMobile(@RequestParam Long mobNumber) {
+	public Student getByMobile( @RequestParam Long mobNumber) {
 		return stuserv.getByContact(mobNumber);
 	}
 	
 	@GetMapping("/getByDept")
-	public List<Student> getByDept(@RequestParam String dept) {
+	public List<Student> getByDept( @RequestParam String dept) {
 		return stuserv.getBydept(dept);
 	}
 	
 	@GetMapping("/getByCity")
-	public List<Student> getByCity(@RequestParam String city){
+	public List<Student> getByCity( @RequestParam String city){
 		return stuserv.getByCity(city);
 	}
 	
 	@DeleteMapping("/deleteById/{id}")
-	public String deleteById(@PathVariable Long id) {
+ 	public String deleteById(@PathVariable Long id) {
 		return stuserv.deleteById(id);
 	}
 	
 	@PutMapping("/update")
-	public String Update(@RequestParam Long id, @RequestBody Student newstu) {
+	public String Update(@RequestParam Long id, @Valid @RequestBody Student newstu) {
 		return stuserv.update(id, newstu);
 	}
 
