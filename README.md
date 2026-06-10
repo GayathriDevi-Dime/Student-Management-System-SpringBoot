@@ -25,6 +25,11 @@ The project performs CRUD operations (Create, Read, Update, Delete) for student 
 ✅ Search Student by Department
 ✅ Update Student Details
 ✅ Delete Student
+✅ Exception Handling By passing custom exceptions
+✅ Global handler
+✅ Validations
+✅ Data transfer object
+
 
 ## API Endpoints
 
